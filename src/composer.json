@@ -1,0 +1,19 @@
+{
+    "name": "badmushroom/tourist",
+    "description": "Visitor tracking and analytics for Laravel apps.",
+    "autoload": {
+        "psr-4": {
+            "Badmushroom\\Tourist\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Chris Sprague",
+            "email": "chris@chaoscontrol.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "ua-parser/uap-php": "dev-master"
+    }
+}
