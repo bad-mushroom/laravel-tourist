@@ -1,8 +1,8 @@
 <?php
 
-namespace BadMushroom\Tourist\Middleware;
+namespace BadMushroom\LaravelTourist\Middleware;
 
-use BadMushroom\Tourist\Facades\Tour;
+use BadMushroom\LaravelTourist\Facades\Tour;
 use Closure;
 use Illuminate\Http\Request;
 

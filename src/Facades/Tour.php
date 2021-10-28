@@ -1,6 +1,6 @@
 <?php
 
-namespace BadMushroom\Tourist\Facades;
+namespace BadMushroom\LaravelTourist\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

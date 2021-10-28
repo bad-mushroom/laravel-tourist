@@ -1,9 +1,9 @@
 {
-    "name": "badmushroom/tourist",
+    "name": "badmushroom/laravel-tourist",
     "description": "Visitor tracking and analytics for Laravel apps.",
     "autoload": {
         "psr-4": {
-            "Badmushroom\\Tourist\\": "src/"
+            "BadMushroom\\LaravelTourist\\": "src/"
         }
     },
     "authors": [

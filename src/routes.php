@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\User;
-use BadMushroom\Tourist\Facades\Tour;
-use BadMushroom\Tourist\Middleware\Tourism;
+use BadMushroom\LaravelTourist\Facades\Tour;
+use BadMushroom\LaravelTourist\Middleware\Tourism;
 use Illuminate\Support\Facades\Route;
 
 Route::get('tourist', function () {

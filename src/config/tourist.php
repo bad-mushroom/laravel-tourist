@@ -25,11 +25,11 @@ return [
     | Tourist includes a built in browser User Agent parsing class but you're
     | free to add your own if you need a more customizable approach.
     | Your class will need to implement a single interface called
-    | BadMushroom\Tourist\Parsers\UserAgentParserInterface.
+    | BadMushroom\LaravelTourist\Parsers\UserAgentParserInterface.
     |
     */
 
-    'parser' => BadMushroom\Tourist\Parsers\UserAgentParser::class,
+    'parser' => BadMushroom\LaravelTourist\Parsers\UserAgentParser::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -58,5 +58,5 @@ return [
     |
     */
 
-    'bot_terms' => ['crawl', '*bot', 'slurp', 'search', '*spider', 'ia_archiver',],
+    'bot_terms' => ['crawl', 'bot', 'slurp', 'search', 'spider', 'ia_archiver',],
 ];

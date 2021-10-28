@@ -1,6 +1,6 @@
 <?php
 
-namespace BadMushroom\Tourist\Parsers;
+namespace BadMushroom\LaravelTourist\Parsers;
 
 use Illuminate\Http\Request;
 use UAParser\Parser;

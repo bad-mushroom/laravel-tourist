@@ -1,10 +1,10 @@
 <?php
 
-namespace BadMushroom\Tourist;
+namespace BadMushroom\LaravelTourist;
 
-use BadMushroom\Tourist\Commands\ClearTours;
-use BadMushroom\Tourist\Parsers\UserAgentParser;
-use BadMushroom\Tourist\Parsers\UserAgentParserInterface;
+use BadMushroom\LaravelTourist\Commands\ClearTours;
+use BadMushroom\LaravelTourist\Parsers\UserAgentParser;
+use BadMushroom\LaravelTourist\Parsers\UserAgentParserInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 

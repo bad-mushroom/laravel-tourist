@@ -1,13 +1,14 @@
 <?php
 
-namespace BadMushroom\Tourist;
+namespace BadMushroom\LaravelTourist;
 
-use BadMushroom\Tourist\Models\TourSession;
-use BadMushroom\Tourist\Models\TourVisit;
-use BadMushroom\Tourist\Parsers\UserAgentParserInterface;
+use BadMushroom\LaravelTourist\Models\TourSession;
+use BadMushroom\LaravelTourist\Models\TourVisit;
+use BadMushroom\LaravelTourist\Parsers\UserAgentParserInterface;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class Tourist
 {
@@ -26,6 +27,13 @@ class Tourist
     protected $traveler;
 
     /**
+     * Configuration values.
+     *
+     * @var array
+     */
+    protected $config;
+
+    /**
      * Tourist
      *
      * @param Request $request
@@ -34,6 +42,7 @@ class Tourist
     public function __construct(Request $request, $config)
     {
         $this->request = $request;
+        $this->config = $config;
         $this->setTraveler($request->user());
         $this->setParser(new $config['parser']($request));
     }
@@ -172,6 +181,10 @@ class Tourist
      */
     public function startTour(string $passport)
     {
+        if ($this->config['ignore_bots'] === true && $this->isBot() === true) {
+            return;
+        }
+
         if (TourSession::where('passport', $passport)->exists()) return;
 
         return TourSession::create([
@@ -196,12 +209,20 @@ class Tourist
      *
      * @param Model $model
      * @param string|null $passport
+     * @throws \Exception
      * @return void
      */
     public function visit(Model $model, string $passport = null): void
     {
-        if (!$passport) {
-            $passport = $this->fetchPassport();
+        if ($this->config['ignore_bots'] === true && $this->isBot() === true) {
+            return;
+        }
+
+        $passport = !empty($passport) ? $passport : $this->fetchPassport();
+
+        if (empty($passport)) {
+            Log::error('Unable to log visit due to missing passport value.');
+            throw new \Exception('Passport must not be null.');
         }
 
         TourVisit::create([
@@ -220,5 +241,21 @@ class Tourist
     private function fetchPassport(): string
     {
         return session()->get('tourist_passport');
+    }
+
+    /**
+     * Check if "bot term" is in UserAgent string.
+     *
+     * @return bool
+     */
+    private function isBot(): bool
+    {
+        foreach ($this->config['bot_terms'] as $term) {
+            if (strpos($this->userAgent(), $term) !== false) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

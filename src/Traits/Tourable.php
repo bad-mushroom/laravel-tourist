@@ -1,8 +1,8 @@
 <?php
 
-namespace BadMushroom\Tourist\Traits;
+namespace BadMushroom\LaravelTourist\Traits;
 
-use BadMushroom\Tourist\Models\TourVisit;
+use BadMushroom\LaravelTourist\Models\TourVisit;
 
 trait Tourable
 {

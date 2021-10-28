@@ -1,15 +1,15 @@
 <?php
 
-namespace BadMushroom\Tourist\Commands;
+namespace BadMushroom\LaravelTourist\Commands;
 
-use BadMushroom\Tourist\Models\ModelTour;
+use BadMushroom\LaravelTourist\Models\TourVisit;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class ClearTours extends Command
 {
     protected $signature = 'tourist:clear';
-    protected $description = 'Clears all model tours tracked by the tourist package.';
+    protected $description = 'Clears all model visits tracked by the tourist package.';
 
     public function handle()
     {
@@ -17,7 +17,7 @@ class ClearTours extends Command
 
         if (!empty($days) && $days > 0) {
             $expires_at = Carbon::now()->addDays($days);
-            ModelTour::where('created_at', '>', $expires_at)->delete();
+            TourVisit::where('created_at', '>', $expires_at)->delete();
         }
     }
 }

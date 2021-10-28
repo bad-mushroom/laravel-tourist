@@ -14,7 +14,7 @@ class CreateTourSessionsTable extends Migration
     public function up()
     {
         Schema::create('tour_sessions', function (Blueprint $table) {
-            $table->string('passport')->unique();
+            $table->string('passport')->primary();
             $table->string('user_agent')->nullable();
             $table->string('device')->nullable();
             $table->string('browser')->nullable();

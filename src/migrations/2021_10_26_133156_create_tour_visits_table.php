@@ -14,9 +14,8 @@ class CreateTourVisitsTable extends Migration
     public function up()
     {
         Schema::create('tour_visits', function (Blueprint $table) {
-            $table->string('passport');
-            $table->string('tourable_type');
-            $table->string('tourable_id');
+            $table->foreign('passport')->references('passport')->on('tour_sessions');
+            $table->morphs('tourable');
             $table->dateTime('visited_at');
             $table->timestamps();
         });

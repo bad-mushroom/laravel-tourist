@@ -1,6 +1,6 @@
 <?php
 
-namespace BadMushroom\Tourist\Models;
+namespace BadMushroom\LaravelTourist\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
