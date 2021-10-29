@@ -9,14 +9,6 @@ trait Tourable
     // -- Relationships
 
     /**
-     * Morph Relationship
-     */
-    public function tourable()
-    {
-        return $this->morphTo();
-    }
-
-    /**
      * TourVists polymorphic releationship.
      *
      * @return morphMany

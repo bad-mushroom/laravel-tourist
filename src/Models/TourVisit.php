@@ -19,6 +19,11 @@ class TourVisit extends Model
         'session',
     ];
 
+    public function tourable()
+    {
+        return $this->morphTo();
+    }
+
     public function session()
     {
         return $this->belongsTo(TourSession::class, 'passport', 'passport');
