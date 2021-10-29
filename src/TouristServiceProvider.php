@@ -12,24 +12,25 @@ class TouristServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        // @TODO REMOVE
-        include __DIR__ . '/routes.php';
+        if ($this->app->runningInConsole()) {
+            /**
+             * Publish configuration file.
+             */
+            $this->publishes([
+                __DIR__ . '../config/tourist.php' => config_path('tourist.php'),
+            ], 'config');
 
-        /**
-         * Publish configuration file.
-         */
-        $this->publishes([
-            __DIR__ . '/config/tourist.php' => config_path('tourist.php'),
-        ], 'config');
-
-        /**
-         * Load migrations.
-         */
-        $this->loadMigrationsFrom(__DIR__ . '/migrations');
+            /**
+             * Load migrations.
+             */
+            $this->loadMigrationsFrom(__DIR__ . '/migrations');
+        }
     }
 
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__ . '/../config/tourist.php', 'tourist');
+
         /**
          * Bind Tour facade.
          */

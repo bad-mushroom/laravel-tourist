@@ -2,7 +2,7 @@
 
 namespace BadMushroom\LaravelTourist\Commands;
 
-use BadMushroom\LaravelTourist\Models\TourVisit;
+use BadMushroom\LaravelTourist\Models\TourSession;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -17,7 +17,7 @@ class ClearTours extends Command
 
         if (!empty($days) && $days > 0) {
             $expires_at = Carbon::now()->addDays($days);
-            TourVisit::where('created_at', '>', $expires_at)->delete();
+            TourSession::where('tour_started_at', '>', $expires_at)->delete();
         }
     }
 }
