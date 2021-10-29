@@ -3,6 +3,7 @@
 namespace BadMushroom\LaravelTourist;
 
 use BadMushroom\LaravelTourist\Commands\ClearTours;
+use BadMushroom\LaravelTourist\Middleware\Tourism;
 use BadMushroom\LaravelTourist\Parsers\UserAgentParser;
 use BadMushroom\LaravelTourist\Parsers\UserAgentParserInterface;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class TouristServiceProvider extends ServiceProvider
              * Publish configuration file.
              */
             $this->publishes([
-                __DIR__ . '../config/tourist.php' => config_path('tourist.php'),
+                __DIR__ . '/../config/tourist.php' => config_path('tourist.php'),
             ], 'config');
 
             /**
@@ -48,5 +49,11 @@ class TouristServiceProvider extends ServiceProvider
          */
         $this->app->bind('command.tourist:clear', ClearTours::class);
         $this->commands(['command.tourist:clear']);
+
+        /**
+         * Register middleware.
+         */
+        $router = $this->app['router'];
+        $router->pushMiddlewareToGroup('tourism', Tourism::class);
     }
 }

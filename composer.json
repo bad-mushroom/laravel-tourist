@@ -1,10 +1,10 @@
 {
     "name": "bad-mushroom/laravel-tourist",
     "description": "Visitor tracking and analytics for Laravel apps.",
-    "autoload": {
-        "psr-4": {
-            "BadMushroom\\LaravelTourist\\": "src/"
-        }
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/bad-mushroom/laravel-tourist/issues",
+        "source": "https://github.com/bad-mushroom/laravel-tourist"
     },
     "authors": [
         {
@@ -12,8 +12,27 @@
             "email": "chris@chaoscontrol.org"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "ua-parser/uap-php": "dev-master"
-    }
+    },
+    "autoload": {
+        "psr-4": {
+            "BadMushroom\\LaravelTourist\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BadMushroom\\LaravelTourist\\TouristServiceProvider"
+            ],
+            "aliases": {
+                "Tour": "BadMushroom\\LaravelTourist\\Facades\\Tour"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

@@ -222,7 +222,7 @@ class Tourist
 
         if (empty($passport)) {
             Log::error('Unable to log visit due to missing passport value.');
-            throw new \Exception('Passport must not be null.');
+            throw new \Exception('Passport must not be null. Make sure to enable Tourism middleware');
         }
 
         TourVisit::create([
@@ -238,7 +238,7 @@ class Tourist
      *
      * @return string
      */
-    private function fetchPassport(): string
+    private function fetchPassport(): ?string
     {
         return session()->get('tourist_passport');
     }
